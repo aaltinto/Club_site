@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #000;
+            --navbar-color: rgb(246, 244, 0);
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: var(--background-color);
+            background-image: radial-gradient(circle, #00F0FF 0.5px, transparent 1px);
+            background-size: 80px 80px; /* Adjust the size of the dots */
+            font-family: "Play", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            text-decoration: none;
+            height: 3000px;
+        }
+        .navbar {
+            background-color: var(--navbar-color);
+            background: linear-gradient(to bottom, rgba(246, 244, 0, 1), rgba(0, 0, 0, 0));
+            position: fixed;
+            height: 15%;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            max-height: 150px;
+        }
+        
+        a {
+            color: rgb(215, 215, 215);
+            font-style: normal;
+            text-decoration: none;
+        }
+        .series {
+            margin-top: 150px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-rows: auto;
+            gap: 24px;
+            padding: 10px;
+        }
+        .content {
+            width: 206px;
+            border-radius: 2px;
+            border: solid 1px;
+            border-color: #00F0FF;
+            background-color: var(--background-color);
+            transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+            box-shadow: none;
+        }
+        .content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.7);
+        }
+        .content h3 {
+            margin-left: 2%;
+            margin-top: -2%;
+        }
+        .categories {
+            display: flex;
+            flex-direction: row;
+        }
+        .category {
+            margin-bottom: 8px;
+            margin-left: 8px;
+            padding: 5px;
+            border-radius: 4px;
+            border: solid 1px;
+            border-color:rgb(225, 0, 51);
+
+        }
+        .search_bar {
+            margin-top: -10%;
+            margin-left: 2cm;
+            color: #00eeffcd;
+            text-size-adjust: 20px;
+            border: none;
+            background-color: transparent;
+            background-image: url("{% static 'images/button-border-blue.png'%}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 40px;
+            box-sizing: border-box;
+            font-size: 16px;
+            padding-left: 20px;
+
+        }
+        .search_bar:focus {
+            outline: none;
+        }
+        .search-bar::placeholder {
+            font-size: 14px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        .logo {
+            margin-left: 20px;
+            height: auto;
+            width: 100%;
+        }
+        @media (max-width: 600px) {
+            .logo {
+                width: 50%;
+                margin-top: -10px;
+            }
+        }
+    </style>
+    <title>CLUB</title>
+</head>
+<body>
+    <div class="navbar">
+            <a href="/"> <img class="logo" src="{% static 'images/2077-logo.png'%}"/> </a>
+        <div class="search_bar_div" >
+            <form method="GET" action="{% url 'home' %}">
+                <input class="search_bar" type="text" name="q" placeholder="Search" autocomplete="off"/>
+            </form>
+        </div>
+    </div>
+    
+    {% block content %}
+    
+    
+    {% endblock %}
+    
+</body>
+</html>

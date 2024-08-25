@@ -1,0 +1,44 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    <h1> {{serie.name}} </h1>
+    <img src="{{ serie.img }}" />
+    <p> {{serie.description}} </p>
+    {% for season, episodes in seasons_with_episodes %}
+        <h3>
+            <a> Season {{ season.number }} </a>
+        </h3>
+    {% endfor %}
+    {% for season, episodes in seasons_with_episodes %}
+        {% for episode in episodes %}
+            <p>
+                <a href="{% url 'episode' serie=serie.name season=season.number number=episode.number %}">
+                    Episode {{ episode.number }}
+                </a>
+            </p>
+        {% endfor %}
+    {% endfor %}
+{%endblock%}
+<!-- 
+<!-- <script>
+    function toggleEpisodes(seasonNumber) {
+    // Get all elements with the class "season"
+    var allSeasons = document.querySelectorAll('.season');
+
+    // Loop through each season element
+    allSeasons.forEach(function(div){
+        // If the element is not the one that was clicked, hide it
+        if (div.id !== "season-" + seasonNumber) {
+            div.style.display = "none";
+        }
+    });
+
+    // Toggle the visibility of the clicked season
+    var episodesDiv = document.getElementById("season-" + seasonNumber);
+    if (episodesDiv.style.display === "none" || episodesDiv.style.display === "") {
+        episodesDiv.style.display = "block";
+    } else {
+        episodesDiv.style.display = "none";
+    }
+}
+    </script> -->

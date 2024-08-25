@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+
+
+{% block content %}
+<div class="series">
+    {% for serie in series %}
+    <div class="content">
+        <a href="/series/{{serie.name}}/"> <img src="{{ serie.img }}" /> </a>
+        <div class="content-name">
+            <h3> <a href="/series/{{serie.name}}/" > {{serie.name}} </a></h3>
+        </div>
+        <div class="categories">
+            {% for category in serie.category.all %}
+            <div class="category">
+                <small>
+                    <a href="{% url 'home' %}?q={{category.name}}">
+                        {{category.name}}
+                    </a>
+                </small>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% endfor %}
+</div>
+    
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <h1>
+        {{seasons.serie}} Season {{episode.season.number}} Episode {{episode.number}}
+    </h1>
+</div>
+<div>
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <video id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="640"
+    height="264"
+    data-setup="{}">
+    <source src={{episode.link}} type="application/x-mpegURL">
+</video>
+<script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+</div>
+<div style="text-align: left; display: inline block">
+    {% if previous_episode%}
+        <button> <a href="{% url 'episode' serie=seasons.serie season=previous_episode.season.number number=previous_episode.number  %}"> Previous Episode</button>
+    {%endif%}
+    {% if next_episode%}
+        <button> <a href="{% url 'episode' serie=seasons.serie season=next_episode.season.number number=next_episode.number %}"> Next Episode</button>
+    {%endif%}
+</div>
+
+{% endblock %}
